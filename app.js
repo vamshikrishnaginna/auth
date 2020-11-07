@@ -1,12 +1,22 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var dotenv = require('dotenv');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+const mongoose = require ('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const authRoute = require('./routes/auth')
+
+dotenv.config();
+
+//Connect to DB
+mongoose.connect(process.env.DB_CONNECT,
+{ useNewUrlParser: true },
+{ useUnifiedTopology: true },
+() => console.log('connected to db!')
+);
 
 var app = express();
 
