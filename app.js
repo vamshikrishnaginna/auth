@@ -8,6 +8,7 @@ const mongoose = require ('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const authRoute = require('./routes/auth')
+const postRoute = require("./routes/posts")
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/user', authRoute);
+app.use('/api/posts', postRoute);
 
 app.listen(3000, ()=> console.log("Server's up and running on port 3000"));
 
